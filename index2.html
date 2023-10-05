@@ -14,8 +14,7 @@
     // Получение значения параметра "userId" из URL
     const urlParams = new URLSearchParams(window.location.search);
     const userid = urlParams.get('userid');
-    let balanceStr = urlParams.get('balance');
-    let balance = balanceStr.replace('/k/gi', '000').replace('/m/gi', '000000');
+    let balance = urlParams.get('balance');
 
     // Использование значения userId
     let text = ('UserId: ' + userid + '\nBalance: ' + balance)
