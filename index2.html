@@ -15,11 +15,8 @@
     const urlParams = new URLSearchParams(window.location.search);
     const userid = urlParams.get('userid');
     const balanceStr = urlParams.get('balance');
-    let balance = balanceStr.replace('/k/g', '000').replace('/m/g', '000000');
-
-    // Использование значения userId
-    let text = 'UserId: ${userid}\nBalance: ${balance}'
-    console.log(text);
+    console.log(userid)
+    console.log(balanceStr)
   </script>
 
 </html>
