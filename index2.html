@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+  </head>
+  <style>
+  </style>
+  <body>
+    <p>Hello</p>
+  </body>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    // Получение значения параметра "userId" из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+
+    // Использование значения userId
+    console.log(userId);
+  </script>
+
+</html>
