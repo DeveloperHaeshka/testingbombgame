@@ -15,7 +15,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const userid = urlParams.get('userid');
     const balanceStr = urlParams.get('balance');
-    let balance = parseInt(balanceStr.replace('/k/g', '000').replace('/m/g', '000000'));
+    let balance = balanceStr.replace('/k/g', '000').replace('/m/g', '000000');
 
     // Использование значения userId
     let text = 'UserId: ${userid}\nBalance: ${balance}'
