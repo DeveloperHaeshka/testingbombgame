@@ -5,20 +5,132 @@
     <title>Testing</title>
   </head>
   <style>
+    body {
+      background: black;
+    }
+
+    .gamemenu {
+        float: left;
+        background-color: rgb(255, 255, 255);
+        display: grid;
+        place-items: center;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        height: 500px;
+        width: 450px;
+        margin-left: 30%;
+        margin-top: -200px;
+        border-radius: 15px;
+    }
+
+    .buttongame {
+        box-shadow: 0 0px 15px rgba(139, 139, 139, 0.555);
+        transition: all 0.2s ease;
+        border-radius: 10px;
+        font-family: 'Montserrat', sans-serif;
+        margin-top: -50px;
+        height: 100px;
+        width: 300px;
+        font-size: 35px;
+        background: rgb(218, 218, 218);
+        cursor: pointer;
+        border: 0;
+    }
+
+    .result {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 0px 15px rgb(211, 211, 211);
+      background: rgb(211, 211, 211);
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      height: 50px;
+      width: 150px;
+      overflow: hidden;
+    }
+
+    .data {
+      float: right;
+      overflow: hidden;
+      text-align: center;
+      align-content: center;
+      display: grid;
+      place-items: center;
+      background-color: rgb(255, 255, 255);
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      height: 200px;
+      width: 200px;
+      float: left;
+      margin-left: 1000px;
+      margin-top: 50px;
+      border-radius: 15px;
+    }
+
+    .UserId {
+      margin-top: -10px;
+      size: 0px;
+    }
   </style>
   <body>
-    <p>Hello</p>
+    <div>
+      <div class="data">
+        <h1 id="UserBalance"></h1>
+        <h1 id="UserId" class="UserId"></h1>
+      </div>
+      <div class="menu">
+        <div class="gamemenu">
+          <h1>Нажми кнопку ниже</h1>
+          <button id="button-x" class="buttongame">Играть</button>
+          <div class="result", id="result">
+            <p id="x">Результаты</p>
+          </div>
+    </div>
   </body>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     // Получение значения параметра "userId" из URL
+
+    function GetRandomInt(max) {
+        console.log(Math.floor(Math.random() * max))
+        return Math.floor(Math.random() * max);
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
+    let buttonX = document.getElementById('button-x')
     const userid = urlParams.get('userid');
     let balance = urlParams.get('balance');
 
+    document.getElementById('UserBalance').innerText = 'Баланс\n' + balance + 'р'
+    document.getElementById('UserId').innerText = 'ID\n' + userid
     // Использование значения userId
-    let text = ('UserId: ' + userid + '\nBalance: ' + balance)
-    console.log(text);
-  </script>
 
+
+    buttonX.addEventListener('click', () => {
+        if (balance == 0) {
+          
+            document.getElementById('result').style.height = '100px';
+            document.getElementById('result').style.width = '150px';
+            document.getElementById('x').style.color = 'red';
+            document.getElementById('UserBalance').innerText = 'Баланс\n0р'
+            document.getElementById('x').innerText = 'вы больше не можете играть';
+        } else {
+            let x = GetRandomInt(3)
+            let NewBalance = balance * x
+            let summ = NewBalance - balance
+            let StatusSumm = ''
+            if (x == 0) {
+              document.getElementById('x').style.color = 'red';
+              summ = balance
+              StatusSumm = '-'
+            } else {
+              document.getElementById('x').style.color = 'green';
+              StatusSumm = '+'
+              
+            }
+            
+            document.getElementById('UserBalance').innerText = 'Баланс\n' + NewBalance + 'р'
+            document.getElementById('x').innerText = StatusSumm + summ + '(' + x + 'x)';
+            balance = NewBalance
+        }
+    })
+  </script>
 </html>
